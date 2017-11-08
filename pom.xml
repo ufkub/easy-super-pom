@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Easy Super POM.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.ufkub</groupId>
+    <artifactId>easy-super-pom</artifactId>
+    <!-- version number pattern: 1.{yy}.{m} -->
+    <version>1.17.12-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Easy Super POM</name>
+    <description>A simple super POM for general use.</description>
+    <url>https://github.com/ufkub/easy-super-pom</url>
+
+    <!-- Another example for a generic, not-too-overcrowded super POM:
+     	https://github.com/simpligility/progressive-organization-pom/blob/master/pom.xml
+     -->
+
+	<!-- Minimum Maven version needed for this pom: 3.0.1.
+		Calculated with: mvn versions:display-plugin-updates
+
+		Changed to: 3.0.4
+		Reason: "Maven 3 users are encouraged to use at least Maven-3.0.4 due to some settings related issues."
+			(https://maven.apache.org/maven-release/maven-release-plugin/)
+	 -->
+	<!--
+		This "prerequisites" tag will give you the warning:
+			[WARNING] The project com.github.ufkub:easy-super-pom:pom:0.1.10-SNAPSHOT uses prerequisites
+			which is only intended for maven-plugin projects but not for non maven-plugin projects.
+			For such purposes you should use the maven-enforcer-plugin.
+			See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+		But it still needed. When it is not defined, there will be the following warning.
+		(And that warning is also be seen in child projects.)
+			[WARNING] Project does not define minimum Maven version, default is: 2.0
+			[INFO] Plugins require minimum Maven version of: 3.0.1
+		That behaviour will be fixed with:
+			https://github.com/mojohaus/versions-maven-plugin/issues/56
+ 	-->
+	<prerequisites>
+		<maven>3.0.4</maven>
+	</prerequisites>
+    <properties>
+		<maven.compiler.source>1.9</maven.compiler.source>
+		<maven.compiler.target>1.9</maven.compiler.target>
+        <!-- Source and (reporting) target files should be encoded with UTF-8. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+            	<!-- sorted alphabetically by artifactId -->
+
+				<!-- http://www.mojohaus.org/animal-sniffer/animal-sniffer-maven-plugin/ -->
+				 <plugin><groupId>org.codehaus.mojo</groupId><artifactId>animal-sniffer-maven-plugin</artifactId><version>1.16</version></plugin>
+				<!-- http://www.mojohaus.org/build-helper-maven-plugin/ -->
+				<plugin><groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.0.0</version></plugin>
+				<!-- http://www.mojohaus.org/buildnumber-maven-plugin/ -->
+				<plugin><groupId>org.codehaus.mojo</groupId><artifactId>buildnumber-maven-plugin</artifactId><version>1.4</version></plugin>
+				<!-- http://www.mojohaus.org/cobertura-maven-plugin/ -->
+				<plugin><groupId>org.codehaus.mojo</groupId><artifactId>cobertura-maven-plugin</artifactId><version>2.7</version></plugin>
+	            <!-- https://gleclaire.github.io/findbugs-maven-plugin, https://github.com/gleclaire/findbugs-maven-plugin -->
+    	        <plugin><groupId>org.codehaus.mojo</groupId><artifactId>findbugs-maven-plugin</artifactId><version>3.0.5</version></plugin>
+	            <!-- http://www.mojohaus.org/jdepend-maven-plugin/ -->
+    	        <plugin><groupId>org.codehaus.mojo</groupId><artifactId>jdepend-maven-plugin</artifactId><version>2.0</version></plugin>
+
+				<!-- https://maven.apache.org/plugins/maven-antrun-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>1.8</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-assembly-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-assembly-plugin</artifactId><version>3.1.0</version></plugin>
+	            <!-- http://maven.apache.org/plugins/maven-changelog-plugin -->
+    	        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-changelog-plugin</artifactId><version>2.3</version></plugin>
+        	    <!-- http://maven.apache.org/plugins/maven-changes-plugin -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-changes-plugin</artifactId><version>2.12.1</version></plugin>
+            	<!-- https://maven.apache.org/plugins/maven-checkstyle-plugin/ -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>2.17</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-clean-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-clean-plugin</artifactId><version>3.0.0</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-compiler-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.7.0</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-dependency-plugin/ https://www.versioneye.com/java/org.apache.maven.plugins:maven-dependency-plugin -->
+				<!-- 2017-11-08: "The POM for org.apache.maven.plugins:maven-dependency-plugin:jar:3.0.4 is missing, no dependency information available" -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.0.2</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-deploy-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-deploy-plugin</artifactId><version>2.8.2</version></plugin>
+				<!-- http://maven.apache.org/plugins/maven-eclipse-plugin = retired -->
+                <!-- https://maven.apache.org/enforcer/maven-enforcer-plugin/ https://www.versioneye.com/java/org.apache.maven.plugins:maven-enforcer-plugin -->
+                <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>1.4.1</version></plugin>
+                <!-- https://maven.apache.org/plugins/maven-gpg-plugin/ -->
+	            <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>1.6</version></plugin>
+	            <!-- https://maven.apache.org/plugins/maven-help-plugin/ -->
+	            <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-help-plugin</artifactId><version>2.2</version></plugin>
+                <!-- http://maven.apache.org/plugins/maven-idea-plugin = retired -->
+				<!-- https://maven.apache.org/plugins/maven-install-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-install-plugin</artifactId><version>2.5.2</version></plugin>
+	            <!-- http://maven.apache.org/plugins/maven-javadoc-plugin https://www.versioneye.com/java/org.apache.maven.plugins:maven-javadoc-plugin/ -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>2.10.4</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-jar-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.0.2</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-jarsigner-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jarsigner-plugin</artifactId><version>1.4</version></plugin>
+				<!-- https://github.com/highsource/maven-jaxb2-plugin/releases https://www.versioneye.com/java/org.jvnet.jaxb2.maven2:maven-jaxb2-plugin -->
+				<plugin><groupId>org.jvnet.jaxb2.maven2</groupId><artifactId>maven-jaxb2-plugin</artifactId><version>0.13.2</version></plugin>
+	            <!-- https://maven.apache.org/jxr/maven-jxr-plugin/ -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jxr-plugin</artifactId><version>2.5</version></plugin>
+            	<!-- https://maven.apache.org/plugins/maven-pmd-plugin/ -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-pmd-plugin</artifactId><version>3.8</version></plugin>
+        	    <!-- https://maven.apache.org/plugins/maven-project-info-reports-plugin -->
+            	<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-project-info-reports-plugin</artifactId><version>2.9</version></plugin>
+				<!-- https://maven.apache.org/maven-release/maven-release-plugin/ https://www.versioneye.com/java/org.apache.maven.plugins:maven-release-plugin -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-release-plugin</artifactId><version>2.5.3</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-resources-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-resources-plugin</artifactId><version>3.0.2</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-shade-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-shade-plugin</artifactId><version>3.1.0</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-site-plugin/ -->
+				<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-site-plugin</artifactId><version>3.6</version></plugin>
+                <!-- https://maven.apache.org/plugins/maven-source-plugin -->
+                <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.0.1</version></plugin>
+                <!-- https://maven.apache.org/surefire/maven-surefire-plugin/ -->
+                <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>2.20.1</version></plugin>
+	            <!-- https://maven.apache.org/surefire/maven-surefire-report-plugin/ -->
+    	        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-report-plugin</artifactId><version>2.20.1</version></plugin>
+    	        <!-- https://maven.apache.org/plugins/maven-toolchains-plugin/ -->
+    	        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-toolchains-plugin</artifactId><version>1.1</version></plugin>
+				<!-- https://maven.apache.org/plugins/maven-war-plugin/ -->
+			    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-war-plugin</artifactId><version>3.2.0</version></plugin>
+
+				<!-- http://www.mojohaus.org/license-maven-plugin/ -->
+				<plugin><groupId>org.codehaus.mojo</groupId><artifactId>license-maven-plugin</artifactId><version>1.14</version></plugin>
+				<!-- http://www.mojohaus.org/properties-maven-plugin/usage.html https://github.com/mojohaus/properties-maven-plugin -->
+				<plugin><groupId>org.codehaus.mojo</groupId><artifactId>properties-maven-plugin</artifactId><version>1.0.0</version></plugin>
+    	        <!-- http://www.mojohaus.org/versions-maven-plugin/index.html -->
+			    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>versions-maven-plugin</artifactId><version>2.5</version></plugin>
+			    <!-- http://www.mojohaus.org/webstart/webstart-maven-plugin/ - still in beta, so not included here- -->
+			    <!-- http://www.mojohaus.org/xml-maven-plugin/ -->
+			    <plugin><groupId>org.codehaus.mojo</groupId><artifactId>xml-maven-plugin</artifactId><version>1.0.1</version></plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+    <profiles>
+		<!-- useful profiles will be added in future (and they will not be activated by default) -->
+    </profiles>
+
+</project>
