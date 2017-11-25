@@ -9,7 +9,7 @@
     <groupId>com.github.ufkub</groupId>
     <artifactId>easy-super-pom</artifactId>
     <!-- version number pattern: 1.{yy}.{m} -->
-    <version>1.17.12-SNAPSHOT</version>
+    <version>1.17.11</version>
     <packaging>pom</packaging>
 
     <name>Easy Super POM</name>
